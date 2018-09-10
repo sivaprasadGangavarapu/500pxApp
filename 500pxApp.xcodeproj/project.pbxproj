@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041B985A2146348C00D400EA /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B98592146348C00D400EA /* GridLayout.swift */; };
+		041B985C214634A100D400EA /* ListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B985B214634A100D400EA /* ListLayout.swift */; };
+		041B985E214637D700D400EA /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B985D214637D700D400EA /* CollectionViewCell.swift */; };
 		04C050712143FB040086ADFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C050702143FB040086ADFE /* AppDelegate.swift */; };
 		04C050732143FB040086ADFE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C050722143FB040086ADFE /* ViewController.swift */; };
 		04C050762143FB040086ADFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C050742143FB040086ADFE /* Main.storyboard */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		041B98592146348C00D400EA /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
+		041B985B214634A100D400EA /* ListLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLayout.swift; sourceTree = "<group>"; };
+		041B985D214637D700D400EA /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		04C0506D2143FB040086ADFE /* 500pxApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 500pxApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C050702143FB040086ADFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04C050722143FB040086ADFE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,7 +64,10 @@
 			children = (
 				04C050702143FB040086ADFE /* AppDelegate.swift */,
 				04C050722143FB040086ADFE /* ViewController.swift */,
+				041B985D214637D700D400EA /* CollectionViewCell.swift */,
 				04C050742143FB040086ADFE /* Main.storyboard */,
+				041B98592146348C00D400EA /* GridLayout.swift */,
+				041B985B214634A100D400EA /* ListLayout.swift */,
 				04C0507A2143FB040086ADFE /* Assets.xcassets */,
 				04C0507C2143FB040086ADFE /* LaunchScreen.storyboard */,
 				04C0507F2143FB040086ADFE /* Info.plist */,
@@ -141,7 +150,10 @@
 			files = (
 				04C050792143FB040086ADFE /* _00pxApp.xcdatamodeld in Sources */,
 				04C050732143FB040086ADFE /* ViewController.swift in Sources */,
+				041B985E214637D700D400EA /* CollectionViewCell.swift in Sources */,
 				04C050712143FB040086ADFE /* AppDelegate.swift in Sources */,
+				041B985C214634A100D400EA /* ListLayout.swift in Sources */,
+				041B985A2146348C00D400EA /* GridLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
