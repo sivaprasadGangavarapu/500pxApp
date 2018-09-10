@@ -15,6 +15,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     @IBOutlet var gridButton: UIButton!
     @IBOutlet var listButton: UIButton!
     var itemsToDisplay = [UIImage]()
+    var itemNames = [String]()
     
     var gridLayout: GridLayout!
     lazy var listLayout: ListLayout = {
@@ -25,11 +26,13 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     // MARK: view methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.barTintColor = UIColor.orange
         photoCollectionView.delegate = self
         photoCollectionView.dataSource = self
 
-        title = "Images"
-        itemsToDisplay = [#imageLiteral(resourceName: "logo"),#imageLiteral(resourceName: "img1"),#imageLiteral(resourceName: "img2"),#imageLiteral(resourceName: "img3"),#imageLiteral(resourceName: "img4"),#imageLiteral(resourceName: "img5"),#imageLiteral(resourceName: "img6"),#imageLiteral(resourceName: "img7"),#imageLiteral(resourceName: "img8"),#imageLiteral(resourceName: "img9")]
+        title = "500px"
+        itemsToDisplay = [#imageLiteral(resourceName: "logo"),#imageLiteral(resourceName: "img1"),#imageLiteral(resourceName: "img2"),#imageLiteral(resourceName: "img3"),#imageLiteral(resourceName: "img4"),#imageLiteral(resourceName: "img5"),#imageLiteral(resourceName: "img6"),#imageLiteral(resourceName: "img7"),#imageLiteral(resourceName: "img8"),#imageLiteral(resourceName: "img9"),#imageLiteral(resourceName: "img10"),#imageLiteral(resourceName: "img11"),#imageLiteral(resourceName: "img12"),#imageLiteral(resourceName: "img14"),#imageLiteral(resourceName: "img15"),#imageLiteral(resourceName: "img16"),#imageLiteral(resourceName: "img17"),#imageLiteral(resourceName: "img18"),#imageLiteral(resourceName: "img19"),#imageLiteral(resourceName: "img6")]
+        itemNames = ["Logo","Shanu","Eveniong Mode","Emma","Silent","Hill Trecking","500px","CuteBaby","Shadow","HeavensGate","WaterBeauty","Logo","Sunrise","FireMe","Pegion","Green Logo","HolidayTrip","Khadanan","Trees","Logo500px"]
         gridLayout = GridLayout(numberOfColumns: 3)
         photoCollectionView.collectionViewLayout = gridLayout
         photoCollectionView.reloadData()
@@ -43,33 +46,53 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         
-        let image = itemsToDisplay[indexPath.item]
-        cell.imageView.image = image
-        cell.labelText.text = "Boom"
+        cell.imageView.image = itemsToDisplay[indexPath.item]
+        cell.labelText.text = itemNames[indexPath.row]
         
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        <#code#>
+        
+        
+        let  destVC = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        destVC.image = itemsToDisplay[indexPath.row]
+        destVC.name = itemNames[indexPath.row]
+        self.navigationController?.pushViewController(destVC, animated: true)
     }
+    // Pagination to Load Images Dynamically
+    /*
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let lastImage = itemsToDisplay.count - 1
+        if indexPath.row == lastImage {
+            loadMoreImages()
+        }
+        
+    }
+    
+    func loadMoreImages()
+    {
+        for i in 1..<10 {
+            let lastImage = itemsToDisplay.last!
+            let newPhoto = lastImage + 1
+            itemsToDisplay.append(newPhoto)
+        }
+        photoCollectionView.reloadData()
+    }
+   */
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         photoCollectionView.collectionViewLayout.invalidateLayout()
     }
     
-    @IBAction func listButtonPressed() {
+    @IBAction func listButtonPressed(sender:UIButton) {
         // change to list layout
-//        if gridLayout.numberOfColumns == 3 {
-//            gridLayout.numberOfColumns = 2
-//        } else {
-//            gridLayout.numberOfColumns = 3
-//        }
-//
+
+        listButton.setTitleColor(.green, for: .normal)
+        gridButton.setTitleColor(.white, for: .normal)
         gridLayout.invalidateLayout()
         if photoCollectionView.collectionViewLayout == gridLayout {
-            // list layout
-           // listButton.isEnabled = false
+           
             UIView.animate(withDuration: 0.1, animations: {
                 self.photoCollectionView.collectionViewLayout.invalidateLayout()
                 self.photoCollectionView.setCollectionViewLayout(self.listLayout, animated: false)
@@ -77,18 +100,19 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         }
     }
     
-    @IBAction func gridButtonPressed() {
+    @IBAction func gridButtonPressed(sender:UIButton) {
         // change to grid layout
+        listButton.setTitleColor(.white, for: .normal)
+        gridButton.setTitleColor(.green, for: .normal)
+        
         if photoCollectionView.collectionViewLayout == gridLayout {
-            // list layout
-            // listButton.isEnabled = false
+            
             UIView.animate(withDuration: 0.1, animations: {
                 self.photoCollectionView.collectionViewLayout.invalidateLayout()
                 self.photoCollectionView.setCollectionViewLayout(self.listLayout, animated: false)
             })
         } else {
-            // grid layout
-            // listButton.isEnabled = true
+           
             UIView.animate(withDuration: 0.1, animations: {
                 self.photoCollectionView.collectionViewLayout.invalidateLayout()
                 self.photoCollectionView.setCollectionViewLayout(self.gridLayout, animated: false)
